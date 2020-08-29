@@ -27,7 +27,9 @@ UI.prototype.addBookTioLIst = function (book) {
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.isbn}</td>
-    <td>X</td>
+    <td class><a><span class="material-icons">
+    delete_forever
+    </span></a></td>
  
     `;
   list.append(row);
@@ -40,15 +42,24 @@ document.querySelector("#book-form").addEventListener("submit", function (e) {
     isbn = document.querySelector("[isbn]").value;
   if (title === "" || author === "" || isbn === "") {
     alert("enter data properly");
-  }
-  // Instantiate book
-  const book = new Book(title, author, isbn);
+  } else {
+    // Instantiate book
+    const book = new Book(title, author, isbn);
 
-  // Instantiate UI
-  const ui = new UI();
-  ui.addBookTioLIst(book);
-  (document.querySelector("[title]").value = ""),
-    (document.querySelector("[author]").value = ""),
-    (document.querySelector("[isbn]").value = "");
+    // Instantiate UI
+    const ui = new UI();
+    ui.addBookTioLIst(book);
+    (document.querySelector("[title]").value = ""),
+      (document.querySelector("[author]").value = ""),
+      (document.querySelector("[isbn]").value = "");
+  }
+
   e.preventDefault();
+});
+
+// Deleteing the row
+document.querySelector(".table").addEventListener("click", function (e) {
+  if (e.target.classList.contains("material-icons")) {
+    e.target.parentElement.parentElement.parentElement.remove();
+  }
 });

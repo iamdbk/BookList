@@ -47,3 +47,8 @@ input[type="submit"]:hover {
 .error {
   background: red;
 }
+
+.material-icons {
+  cursor: pointer;
+  color: #333;
+}
